@@ -1,23 +1,13 @@
 
 
-def cipher(word,keyChange)
-    chars = word.split('')
-    uppercase = ("A".."Z").to_a
-    lowercase = ("a".."z").to_a
-    
-     chars.each do |c| 
-        i = c.ord
-        if lowercase.include?(c)
-        print"#{[((i.ord + keyChange - 97)%26 + 97) ].pack('U*')}"
-        else uppercase.include?(c)
-            print"#{[((i.ord + keyChange - 65)%26 + 65) ].pack('U*')}"
-        end
-     end
-     
+def cypher (string, num_shift)
+    puts "This was the test => " + string + "\n"
+    num_shift -= 25 if num_shift >= 25
+    string.each_byte do |c|
+        c += num_shift if !c.ord.chr.match(/\A[a-zA-Z0-9]*\z/).nil?
+        print c.chr
     end
-    
-    cipher("SECRET words",13)
+end
 
-
-
+cypher("This is a test! bbBB!!00", 1)
 
